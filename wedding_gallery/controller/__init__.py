@@ -1,0 +1,1 @@
+from wedding_gallery.controller import gallery
