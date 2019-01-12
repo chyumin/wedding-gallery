@@ -1,0 +1,5 @@
+Flask
+Flask-Migrate
+Flask-JWT-Extended
+Flask-SQLAlchemy
+requests

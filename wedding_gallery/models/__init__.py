@@ -1,8 +1,15 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-from cerberus import app
+from wedding_gallery import app
 
-db = SQLAlchemy(app, session_options={'autocommit': True})
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+
+# Disable warning
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+db.create_all()
 migrate = Migrate(app, db)
 DBSession = db.session
