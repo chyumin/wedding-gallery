@@ -1,4 +1,5 @@
 Flask
+Flask-Script
 Flask-Migrate
 Flask-JWT-Extended
 Flask-SQLAlchemy
