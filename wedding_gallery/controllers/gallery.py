@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import flash, redirect, render_template
 
 from wedding_gallery import app, forms
 
@@ -17,11 +17,15 @@ def index():
     return render_template('index.html', **template_args)
 
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = forms.LoginForm()
+    if form.validate_on_submit():
+        flash('Login requested for user {}, remember_me={}'.format(
+            form.username.data, form.remember_me.data))
+        return redirect('/index')
     template_args = {
         'form': form,
-        'title': 'Wedding Gallery'
+        'title': 'Sign In'
     }
     return render_template('login.html', **template_args)

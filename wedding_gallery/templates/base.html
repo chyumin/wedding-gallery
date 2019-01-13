@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>{{ title }}</title>
+    <title>{{ title if title else 'Wedding Gallery' }}</title>
 </head>
 
 </body>
+    <div>
+        <button type="button" onclick="window.location.href='{{ url_for('index') }}';">Home</button>
+        <button type="button" onclick="window.location.href='{{ url_for('users') }}';">Users</button>
+        <button type="button" onclick="window.location.href='{{ url_for('login') }}';">Login</button>
+    </div>
     {% with messages = get_flashed_messages() %}
-        <div>
-            <ul>
-                {% for msg in messages %}
-                    <li>{{ msg }}</li>
-                {% endfor -%}
-            </ul>
-        </div>
-{% endwith %}
-    <button type="button" onclick="window.location.href='{{ url_for('index') }}';">Home</button>
-    <button type="button" onclick="window.location.href='{{ url_for('users') }}';">Users</button>
-    <button type="button" onclick="window.location.href='{{ url_for('login') }}';">Login</button>
+    <div>
+        <ul>
+            {% for msg in messages %}
+            <li>{{ msg }}</li>
+            {% endfor -%}
+        </ul>
+    </div>
+    {% endwith %}
 
     {% block content %}{% endblock %}
 
