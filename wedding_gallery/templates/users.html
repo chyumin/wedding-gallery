@@ -3,6 +3,8 @@
 {% block content %}
 
 <ul>
+    {# System must have at least one master user, checking just in case #}
+    {% if users %}
     <form action="users/delete_users" method="post" novalidate>
         <table>
             <tr>
@@ -24,8 +26,12 @@
             </tr>
             {% endfor %}
         </table>
-        <button type="button" onclick="window.location.href='{{ url_for('create_user') }}';">Create User</button>
         <input type="submit" value="Delete Users">
     </form>
+    {% else %}
+    No Users Created
+    {% endif %}
+    <br>
+    <button type="button" onclick="window.location.href='{{ url_for('create_user') }}';">Create User</button>
 </ul>
 {% endblock %}
