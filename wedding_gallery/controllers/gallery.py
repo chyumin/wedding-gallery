@@ -1,6 +1,6 @@
 from flask import render_template
 
-from wedding_gallery import app
+from wedding_gallery import app, forms
 
 
 @app.route('/')
@@ -15,3 +15,13 @@ def index():
         'title': 'Wedding Gallery'
     }
     return render_template('index.html', **template_args)
+
+
+@app.route('/login')
+def login():
+    form = forms.LoginForm()
+    template_args = {
+        'form': form,
+        'title': 'Wedding Gallery'
+    }
+    return render_template('login.html', **template_args)

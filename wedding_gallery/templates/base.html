@@ -18,6 +18,7 @@
 {% endwith %}
     <button type="button" onclick="window.location.href='{{ url_for('index') }}';">Home</button>
     <button type="button" onclick="window.location.href='{{ url_for('users') }}';">Users</button>
+    <button type="button" onclick="window.location.href='{{ url_for('login') }}';">Login</button>
 
     {% block content %}{% endblock %}
 
