@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-<button type="button" onclick="window.location.href='{{ url_for('create_user') }}';">Create User</button>
 
 <ul>
     <form id="user_form" class="form-horizontal" action="/user/create" method="post" novalidate>
