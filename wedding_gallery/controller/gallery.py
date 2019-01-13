@@ -15,11 +15,3 @@ def index():
         'title': 'Wedding Gallery'
     }
     return render_template('index.html', **template_args)
-
-
-@app.route('/users')
-def users():
-    template_args = {
-        'title': 'Users'
-    }
-    return render_template('users.html', **template_args)
