@@ -19,4 +19,4 @@ class Photo(db.Model):
     approved = db.Column(db.Boolean, nullable=False, server_default='0')
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
-    user_id = db.Column(db.Integer, db.ForeignKey('user_id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('gallery_user.id'))
