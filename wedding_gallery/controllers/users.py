@@ -1,7 +1,7 @@
-from flask import flash, redirect, render_template, url_for
+from flask import flash, redirect, render_template, request, url_for
 
 from wedding_gallery import app
-from wedding_gallery.forms import CreateUserForm
+from wedding_gallery import forms
 from wedding_gallery.models import core, DBSession
 
 
@@ -17,7 +17,7 @@ def users():
 
 @app.route('/users/create_user')
 def create_user():
-    form = CreateUserForm()
+    form = forms.CreateUserForm()
     template_args = {
         'form': form,
         'title': 'Create User'
@@ -27,7 +27,7 @@ def create_user():
 
 @app.route('/users/do_create_user', methods=['POST'])
 def do_create_user():
-    form = CreateUserForm()
+    form = forms.CreateUserForm()
     if not form.validate_on_submit():
         flash('Could not create user', 'error')
         return redirect(url_for('users'))
@@ -37,4 +37,15 @@ def do_create_user():
     DBSession.add(new_user)
     DBSession.commit()
     flash(f'User {username} created')
+    return redirect(url_for('users'))
+
+
+@app.route('/users/delete_users', methods=['POST'])
+def delete_users():
+    users_ids_list = request.form.getlist('checkbox-list')
+    query = DBSession.query(core.GalleryUser).\
+        filter(core.GalleryUser.id.in_(users_ids_list))
+    query.delete(synchronize_session=False)
+    DBSession.commit()
+    flash('Users deleted')
     return redirect(url_for('users'))

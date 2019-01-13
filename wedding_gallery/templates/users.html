@@ -3,18 +3,25 @@
 {% block content %}
 
 <ul>
-    <form id="user_form" class="form-horizontal" action="/user/create" method="post" novalidate>
+    <form action="users/delete_users" method="post" novalidate>
         <table>
             <tr>
                 <th>Username</th>
+                <th>Select</th>
             </tr>
             {% for user in users %}
-                <tr>
-                    <td>{{ user.username }}</td>
-                </tr>
+            <tr>
+                <td>
+                    {{ user.username }}
+                </td>
+                <td>
+                    <input type="checkbox" name="checkbox-list" value="{{ user.id }}">
+                </td>
+            </tr>
             {% endfor %}
         </table>
         <button type="button" onclick="window.location.href='{{ url_for('create_user') }}';">Create User</button>
+        <input type="submit" value="Delete Users">
     </form>
 </ul>
 {% endblock %}
