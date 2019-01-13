@@ -33,7 +33,10 @@ def do_create_user():
         return redirect(url_for('users'))
     username = form.username.data
     password = form.password.data
-    new_user = core.GalleryUser(username=username, password=password)
+    master = form.master.data
+    new_user = core.GalleryUser(username=username,
+                                password=password,
+                                master=master)
     DBSession.add(new_user)
     DBSession.commit()
     flash(f'User {username} created')

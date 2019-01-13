@@ -12,6 +12,7 @@
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}
         </p>
+        {{form.master}} {{form.master.label}}
         <p>{{ form.submit() }}</p>
     </form>
 {% endblock %}
