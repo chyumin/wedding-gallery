@@ -5,6 +5,7 @@ from wtforms.validators import DataRequired
 
 class CreateUserForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
+    name = StringField('Name')
     password = PasswordField('Password', validators=[DataRequired()])
     master = BooleanField('Master')
     submit = SubmitField('Create User')

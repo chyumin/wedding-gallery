@@ -6,11 +6,15 @@
     <form action="users/delete_users" method="post" novalidate>
         <table>
             <tr>
+                <th>Name</th>
                 <th>Username</th>
                 <th>Select</th>
             </tr>
             {% for user in users %}
             <tr>
+                <td>
+                    {{ user.name or ''}}
+                </td>
                 <td>
                     {{ user.username }}
                 </td>

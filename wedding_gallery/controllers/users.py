@@ -31,15 +31,17 @@ def do_create_user():
     if not form.validate_on_submit():
         flash('Could not create user', 'error')
         return redirect(url_for('users'))
-    username = form.username.data
-    password = form.password.data
-    master = form.master.data
-    new_user = core.GalleryUser(username=username,
-                                password=password,
-                                master=master)
+
+    db_args = dict(username=form.username.data,
+                   name=form.name.data,
+                   password=form.password.data,
+                   master=form.master.data)
+    new_user = core.GalleryUser(**db_args)
+
     DBSession.add(new_user)
     DBSession.commit()
-    flash(f'User {username} created')
+
+    flash(f'User {form.name.data or form.username.data} created')
     return redirect(url_for('users'))
 
 
