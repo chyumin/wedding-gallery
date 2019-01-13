@@ -34,9 +34,9 @@ def do_create_user():
 
     db_args = dict(username=form.username.data,
                    name=form.name.data,
-                   password=form.password.data,
                    master=form.master.data)
     new_user = core.GalleryUser(**db_args)
+    new_user.set_password(form.password.data)
 
     DBSession.add(new_user)
     DBSession.commit()
