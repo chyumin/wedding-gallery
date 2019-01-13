@@ -1,6 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Hi, User!</h1>
 <button type="button" onclick="window.location.href='{{ url_for('create_user') }}';">Create User</button>
+
+<ul>
+    <form id="user_form" class="form-horizontal" action="/user/create" method="post" novalidate>
+        <table>
+            <tr>
+                <th>Username</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <button type="button" onclick="window.location.href='{{ url_for('users') }}';">Create User</button>
+    </form>
+</ul>
 {% endblock %}

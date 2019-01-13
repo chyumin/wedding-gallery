@@ -7,7 +7,9 @@ from wedding_gallery.models import core, DBSession
 
 @app.route('/users')
 def users():
+    all_users = DBSession.query(core.GalleryUser).all()
     template_args = {
+        'users': all_users,
         'title': 'Users'
     }
     return render_template('users.html', **template_args)
