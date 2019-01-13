@@ -10,4 +10,16 @@ def index():
         'https://cdn.vox-cdn.com/thumbor/3ZoHPzXw1lI6_1bzIxT6AWMgrM0=/0x0:1920x1080/1200x800/filters:focal(573x260:879x566)/cdn.vox-cdn.com/uploads/chorus_image/image/61619931/Assassin_s_Creed__Odyssey__24.0.jpeg',
         'https://cdn.theatlantic.com/assets/media/img/photo/2018/07/photos-of-the-week/w01_RTS1VUP1/main_900.jpg?1531496186'
     ]
-    return render_template('index.html', photos=photos)
+    template_args = {
+        'photos': photos,
+        'title': 'Wedding Gallery'
+    }
+    return render_template('index.html', **template_args)
+
+
+@app.route('/users')
+def users():
+    template_args = {
+        'title': 'Users'
+    }
+    return render_template('users.html', **template_args)
