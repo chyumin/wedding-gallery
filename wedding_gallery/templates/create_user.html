@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Create User</h1>
+    <form action="do_create_user" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
