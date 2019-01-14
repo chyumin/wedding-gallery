@@ -10,7 +10,11 @@
     <div>
         <button type="button" onclick="window.location.href='{{ url_for('index') }}';">Home</button>
         <button type="button" onclick="window.location.href='{{ url_for('users') }}';">Users</button>
+        {% if current_user.is_anonymous %}
         <button type="button" onclick="window.location.href='{{ url_for('login') }}';">Login</button>
+        {% else %}
+        <button type="button" onclick="window.location.href='{{ url_for('logout') }}';">Logout</button>
+        {% endif %}
     </div>
     {% with messages = get_flashed_messages() %}
     <div>

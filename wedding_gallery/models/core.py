@@ -1,10 +1,12 @@
 from datetime import datetime
+from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from wedding_gallery.models import db
+from wedding_gallery import login_manager
 
 
-class GalleryUser(db.Model):
+class GalleryUser(UserMixin, db.Model):
     __tablename__ = 'gallery_user'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), nullable=False, unique=True)
@@ -15,8 +17,8 @@ class GalleryUser(db.Model):
     def set_password(self, password):
         self.password = generate_password_hash(password)
 
-    def get_password(self, password):
-        self.password = check_password_hash(password)
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -30,3 +32,8 @@ class Photo(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     user_id = db.Column(db.Integer, db.ForeignKey('gallery_user.id'))
+
+
+@login_manager.user_loader
+def load_user(id_):
+    return GalleryUser.query.get(int(id_))
