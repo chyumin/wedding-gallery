@@ -33,12 +33,18 @@ def upgrade():
     op.bulk_insert(
         gallery_user,
         [
-            {'username': 'husband',
-             'password': generate_password_hash('husband')},
-            {'username': 'wife',
-             'password': generate_password_hash('wife')},
-            {'username': 'friend',
-             'password': generate_password_hash('friend')}
+            {'name': 'Lovely Husband',
+             'username': 'husband',
+             'password': generate_password_hash('husband'),
+             'master': True},
+            {'name': 'Sweet Wife',
+             'username': 'wife',
+             'password': generate_password_hash('wife'),
+             'master': True},
+            {'name': 'Good Guy Friend',
+             'username': 'friend',
+             'password': generate_password_hash('friend'),
+             'master': False}
         ]
     )
 
