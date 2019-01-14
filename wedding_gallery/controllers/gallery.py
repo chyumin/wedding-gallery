@@ -1,4 +1,5 @@
 from flask import flash, redirect, render_template, request, url_for
+from flask_login import current_user, login_required
 
 from wedding_gallery import app, util
 from wedding_gallery.models import core, DBSession
@@ -38,3 +39,9 @@ def do_approve():
     DBSession.commit()
     flash('Photos Approved!')
     return redirect(url_for('approve_photos'))
+
+
+@app.route('/do_like')
+@login_required
+def do_like():
+    return redirect(url_for('index'))
