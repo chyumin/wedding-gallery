@@ -9,15 +9,15 @@
     Sort by:
         <a href="{{ url_for('index', sort_on='timestamp') }}">Date</a>
         |
-        <a href="#">Likes</a>
+        <a href="{{ url_for('index', sort_on='number_of_likes') }}">Likes</a>
     <br>
 </div>
 <section class="content">
     {%- set sort_on = request.args.sort_on|default('timestamp') %}
-    {%- for photo in photos|sort(attribute=sort_on) %}
-
+    {%- for photo in photos|sort(attribute=sort_on, reverse=True) %}
     <img src="{{photo.link}}"/>
     <br>
+    {{ photo.number_of_likes }}
     <button type="button" onclick="window.location.href='{{ url_for('do_like') }}';">Like</button>
     <br>
     {%- else %}

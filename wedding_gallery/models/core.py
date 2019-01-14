@@ -2,7 +2,7 @@ from datetime import datetime
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from wedding_gallery.models import db
+from wedding_gallery.models import db, DBSession
 from wedding_gallery import login_manager
 
 
@@ -33,6 +33,10 @@ class Photo(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     user_id = db.Column(db.Integer, db.ForeignKey('gallery_user.id'))
+
+    @property
+    def number_of_likes(self):
+        return DBSession.query(Like).filter_by(photo_id=self.id).count()
 
 
 class Like(db.Model):
