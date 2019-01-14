@@ -6,15 +6,17 @@
     <h1>Photos to be Approved</h1>
 </nav>
 <section class="content">
+    {%- if photos %}
     <form action="do_approve" method="post" novalidate>
         {% for photo in photos %}
         <input type="checkbox" name="checkbox-list" value="{{ photo.id }}">
         <img align="center" src="{{photo.link}}"/>
         <br>
-        {% else %}
-        No photos to be approved
         {% endfor %}
         <input type="submit" value="Approve Selected">
     </form>
+    {% else %}
+    No photos to be approved
+    {% endif %}
 </section>
 {% endblock %}

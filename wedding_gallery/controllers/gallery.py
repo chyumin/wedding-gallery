@@ -18,7 +18,7 @@ def index():
 @app.route('/approve_photos')
 @util.require_master
 def approve_photos():
-    photos = core.Photo.query.filter_by(approved=False)
+    photos = core.Photo.query.filter_by(approved=False).all()
     template_args = {
         'photos': photos,
         'title': 'Approve Photos'
@@ -30,6 +30,9 @@ def approve_photos():
 @util.require_master
 def do_approve():
     photos_ids_list = request.form.getlist('checkbox-list')
+    if not photos_ids_list:
+        flash('No photos approved')
+        return redirect(url_for('approve_photos'))
     query = DBSession.query(core.Photo).filter(
         core.Photo.id.in_(photos_ids_list)
     )
