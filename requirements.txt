@@ -4,6 +4,7 @@ Flask-Login
 Flask-Migrate
 Flask-Script
 Flask-SQLAlchemy
+Flask-WTF
 requests
 WTForms
 Werkzeug
