@@ -8,20 +8,20 @@
     <form action="users/delete_users" method="post" novalidate>
         <table>
             <tr>
+                <th></th>
                 <th>Name</th>
                 <th>Username</th>
-                <th>Select</th>
             </tr>
             {% for user in users %}
             <tr>
+                <td>
+                    <input type="checkbox" name="checkbox-list" value="{{ user.id }}">
+                </td>
                 <td>
                     {{ user.name or ''}}
                 </td>
                 <td>
                     {{'*' if user.master }}{{ user.username }}
-                </td>
-                <td>
-                    <input type="checkbox" name="checkbox-list" value="{{ user.id }}">
                 </td>
             </tr>
             {% endfor %}
