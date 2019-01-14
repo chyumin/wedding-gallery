@@ -1,11 +1,11 @@
 from flask import flash, redirect, render_template, request, url_for
 
-from wedding_gallery import app
-from wedding_gallery import forms
+from wedding_gallery import app, forms, util
 from wedding_gallery.models import core, DBSession
 
 
 @app.route('/users')
+@util.require_master
 def users():
     all_users = DBSession.query(core.GalleryUser).all()
     template_args = {
@@ -16,6 +16,7 @@ def users():
 
 
 @app.route('/users/create_user')
+@util.require_master
 def create_user():
     form = forms.CreateUserForm()
     template_args = {
@@ -26,6 +27,7 @@ def create_user():
 
 
 @app.route('/users/do_create_user', methods=['POST'])
+@util.require_master
 def do_create_user():
     form = forms.CreateUserForm()
     if not form.validate_on_submit():
@@ -46,6 +48,7 @@ def do_create_user():
 
 
 @app.route('/users/delete_users', methods=['POST'])
+@util.require_master
 def delete_users():
     users_ids_list = request.form.getlist('checkbox-list')
     query = DBSession.query(core.GalleryUser).\

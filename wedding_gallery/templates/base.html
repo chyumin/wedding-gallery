@@ -9,8 +9,10 @@
 </body>
     <div>
         <button type="button" onclick="window.location.href='{{ url_for('index') }}';">Home</button>
+        {% if current_user.master %}
         <button type="button" onclick="window.location.href='{{ url_for('users') }}';">Users</button>
         <button type="button" onclick="window.location.href='{{ url_for('approve_photos') }}';">Approve Photos</button>
+        {% endif %}
         {% if current_user.is_anonymous %}
         <button type="button" onclick="window.location.href='{{ url_for('login') }}';">Login</button>
         {% else %}

@@ -1,6 +1,6 @@
 from flask import flash, redirect, render_template, request, url_for
 
-from wedding_gallery import app
+from wedding_gallery import app, util
 from wedding_gallery.models import core, DBSession
 
 
@@ -15,6 +15,7 @@ def index():
 
 
 @app.route('/approve_photos')
+@util.require_master
 def approve_photos():
     photos = core.Photo.query.filter_by(approved=False)
     template_args = {
@@ -25,6 +26,7 @@ def approve_photos():
 
 
 @app.route('/do_approve', methods=['POST'])
+@util.require_master
 def do_approve():
     photos_ids_list = request.form.getlist('checkbox-list')
     query = DBSession.query(core.Photo).filter(
