@@ -4,3 +4,12 @@ img{
   margin-right: auto;
   width: 55%;
 }
+
+#show-photos{
+  display: block;
+  text-align: center;
+  margin-top: 100 px;
+  margin-bottom: 100 px;
+  margin-left: 0 px;
+  margin-right: 0 px;
+}

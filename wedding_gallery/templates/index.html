@@ -15,11 +15,18 @@
 <section class="content">
     {%- set sort_on = request.args.sort_on|default('timestamp') %}
     {%- for photo in photos|sort(attribute=sort_on, reverse=True) %}
-    <img src="{{photo.link}}"/>
-    <br>
-    {{ photo.number_of_likes }}
-    <button type="button" onclick="window.location.href='{{ url_for('do_like') }}';">Like</button>
-    <br>
+    <div id="show-photos" class="blabla">
+        <img src="{{photo.link}}"/>
+        {%- if photo.number_of_likes %}
+        <br>
+        ♥ {{ photo.number_of_likes }}
+        <br>
+        {%- endif %}
+        <br>
+        <button type="button" onclick="window.location.href='{{ url_for('do_like') }}';">Like</button>
+        <br>
+        <br>
+    </div>
     {%- else %}
         No images to gallery yet
     {%- endfor %}
