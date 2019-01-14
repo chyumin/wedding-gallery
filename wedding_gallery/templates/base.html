@@ -10,6 +10,7 @@
     <div>
         <button type="button" onclick="window.location.href='{{ url_for('index') }}';">Home</button>
         <button type="button" onclick="window.location.href='{{ url_for('users') }}';">Users</button>
+        <button type="button" onclick="window.location.href='{{ url_for('approve_photos') }}';">Approve Photos</button>
         {% if current_user.is_anonymous %}
         <button type="button" onclick="window.location.href='{{ url_for('login') }}';">Login</button>
         {% else %}
