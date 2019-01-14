@@ -7,7 +7,9 @@
 </nav>
 <section class="content">
     {% for photo in photos %}
-        <img align="center" src="{{photo}}"/>
+        <img align="center" src="{{photo.link}}"/>
+    {% else %}
+        No images to gallery yet
     {% endfor %}
 </section>
 {% endblock %}
