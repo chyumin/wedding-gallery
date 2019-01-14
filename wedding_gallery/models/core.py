@@ -13,6 +13,7 @@ class GalleryUser(UserMixin, db.Model):
     name = db.Column(db.String)
     password = db.Column(db.String(128), nullable=False)
     master = db.Column(db.Boolean, nullable=False, server_default='0')
+    photos = db.relationship('Photo', backref='owner')
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
@@ -32,6 +33,13 @@ class Photo(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     user_id = db.Column(db.Integer, db.ForeignKey('gallery_user.id'))
+
+
+class Like(db.Model):
+    __tablename__ = 'like'
+    user_id = db.Column(db.Integer, db.ForeignKey('gallery_user.id'))
+    photo_id = db.Column(db.Integer, db.ForeignKey('photo.id'))
+    __table_args__ = (db.PrimaryKeyConstraint('user_id', 'photo_id'), )
 
 
 @login_manager.user_loader
