@@ -15,5 +15,3 @@ def index():
         'title': 'Wedding Gallery'
     }
     return render_template('index.html', **template_args)
-
-
