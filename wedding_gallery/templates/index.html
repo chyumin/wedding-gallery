@@ -5,11 +5,23 @@
 <nav>
     <h1>Wedding Gallery</h1>
 </nav>
+    <div>
+    Sort by:
+        <a href="{{ url_for('index', sort_on='timestamp') }}">Date</a>
+        |
+        <a href="#">Likes</a>
+    <br>
+</div>
 <section class="content">
-    {% for photo in photos %}
-        <img align="center" src="{{photo.link}}"/>
-    {% else %}
+    {%- set sort_on = request.args.sort_on|default('timestamp') %}
+    {%- for photo in photos|sort(attribute=sort_on) %}
+
+    <img align="center" src="{{photo.link}}"/>
+    <br>
+    <button type="button" onclick="window.location.href='{{ url_for('do_like') }}';">Like</button>
+    <br>
+    {%- else %}
         No images to gallery yet
-    {% endfor %}
+    {%- endfor %}
 </section>
 {% endblock %}
