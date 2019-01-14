@@ -16,7 +16,7 @@
     {%- set sort_on = request.args.sort_on|default('timestamp') %}
     {%- for photo in photos|sort(attribute=sort_on) %}
 
-    <img align="center" src="{{photo.link}}"/>
+    <img src="{{photo.link}}"/>
     <br>
     <button type="button" onclick="window.location.href='{{ url_for('do_like') }}';">Like</button>
     <br>
