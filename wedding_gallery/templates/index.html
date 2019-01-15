@@ -5,12 +5,12 @@
 <nav>
     <h1>Wedding Gallery</h1>
 </nav>
-    <div>
-    Sort by:
-        <a href="{{ url_for('index', sort_on='timestamp') }}">Date</a>
-        |
-        <a href="{{ url_for('index', sort_on='number_of_likes') }}">Likes</a>
-    <br>
+<div>
+Sort by:
+    <a href="{{ url_for('index', sort_on='timestamp') }}">Date</a>
+    |
+    <a href="{{ url_for('index', sort_on='number_of_likes') }}">Likes</a>
+<br>
 </div>
 <section class="content">
     {%- set sort_on = request.args.sort_on|default('timestamp') %}
@@ -18,9 +18,7 @@
     <div id="show-photos" class="blabla">
         <img src="{{photo.link}}"/>
         {%- if photo.number_of_likes %}
-        <br>
         ♥ {{ photo.number_of_likes }}
-        <br>
         {%- endif %}
         <br>
         <button type="button" onclick="window.location.href='{{ url_for('do_like') }}';">Like</button>
