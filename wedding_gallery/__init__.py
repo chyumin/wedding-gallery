@@ -9,4 +9,4 @@ app.config.from_object(Config)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
-from wedding_gallery.controllers import auth, gallery, users
+from wedding_gallery.controllers import auth, gallery, upload, users

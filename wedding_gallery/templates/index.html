@@ -15,7 +15,7 @@ Sort by:
 <section class="content">
     {%- set sort_on = request.args.sort_on|default('timestamp') %}
     {%- for photo in photos|sort(attribute=sort_on, reverse=True) %}
-    <div id="show-photos" class="blabla">
+    <div id="show-photos">
         <img src="{{photo.link}}"/>
         {%- if photo.number_of_likes %}
         ♥ {{ photo.number_of_likes }}

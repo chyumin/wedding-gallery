@@ -3,3 +3,6 @@
 *.eeg-info
 *.pyc
 *.db
+**/static/*.jpg
+**/static/*.png
+**/static/*.jpeg
