@@ -16,15 +16,25 @@ Sort by:
     {%- set sort_on = request.args.sort_on|default('timestamp') %}
     {%- for photo in photos|sort(attribute=sort_on, reverse=True) %}
     <div id="show-photos">
-        <img src="{{photo.link}}"/>
-        {%- if photo.number_of_likes %}
-        ♥ {{ photo.number_of_likes }}
-        {%- endif %}
-        <button type="button" onclick="window.location.href='{{ url_for('do_like', photo_id=photo.id) }}';">Like</button>
+        <img src="{{ photo.link }}"/>
+        <div class="number_of_likes" id="{{ photo.id }}">{{ photo.number_of_likes }} ♥</div>
+        <button type="button" id="{{ photo.id }}" name="like">Like</button>
         <br>
     </div>
     {%- else %}
         No images to gallery yet
     {%- endfor %}
 </section>
+
+<script type="text/javascript">
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+    window.jQuery || document.write('<script src="{{ url_for('static', filename='jquery.js') }}">')
+</script>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 {% endblock %}

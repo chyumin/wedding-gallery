@@ -1,4 +1,4 @@
-from flask import flash, redirect, render_template, request, url_for
+from flask import flash, jsonify, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
 
 from wedding_gallery import app, util
@@ -45,8 +45,10 @@ def do_approve():
 
 
 @app.route('/do_like')
-@login_required
 def do_like():
+    if current_user.is_anonymous:
+        return jsonify({'not_logged': True})
+
     photo_id = request.args.get("photo_id")
     user_id = current_user.id
     if not photo_id or not user_id:
@@ -60,4 +62,5 @@ def do_like():
     else:
         DBSession.delete(like)
     DBSession.commit()
-    return redirect(url_for('index'))
+    photo = core.Photo.query.get(photo_id)
+    return jsonify({'number_of_likes': photo.number_of_likes})
