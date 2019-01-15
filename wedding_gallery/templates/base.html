@@ -13,6 +13,11 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url_for('index') }}">Gallery</a>
             </li>
+            {% if current_user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('upload') }}">Upload Photos</a>
+            </li>
+            {% endif %}
             {% if current_user.master %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('users') }}">Users</a>
@@ -35,19 +40,15 @@
 
     </div>
 
-
-
     {% with messages = get_flashed_messages() %}
-    <div>
-        <ul>
-            {% for msg in messages %}
-            <li>{{ msg }}</li>
-            {% endfor -%}
-        </ul>
-    </div>
+        {% for msg in messages %}
+        <div class="alert alert-info" role="alert">
+            {{ msg }}
+        </div>
+        {% endfor -%}
     {% endwith %}
 
-    {% block content %}{% endblock %}
+{% block content %}{% endblock %}
 
 </body>
 </html>
