@@ -8,12 +8,14 @@
 <section class="content">
     {%- if photos %}
     <form action="do_approve" method="post" novalidate>
+        <div class="wg-card wg-card-two">
         {% for photo in photos %}
-        <input type="checkbox" name="checkbox-list" value="{{ photo.id }}">
-        <img align="center" src="{{photo.link}}"/>
-        <br>
+        <img src="{{photo.link}}"/>
+        <input class="approve-checkbox" type="checkbox" name="checkbox-list" value="{{ photo.id }}">
         {% endfor %}
-        <input type="submit" value="Approve Selected">
+        </div>
+        <br>
+        <input class="wg-button" style="text-align: center" type="submit" value="Approve Selected">
     </form>
     {% else %}
     No photos to be approved

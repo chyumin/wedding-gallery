@@ -99,3 +99,4 @@ It's possible to Create New Users and Delete Users
 - Unnaprove Photos
 - Remove Photos
 - "My Uploaded Photos" Page
+- Add upload maximum size

@@ -54,7 +54,9 @@
         {% endfor -%}
     {% endwith %}
 
+    <div class="container-fluid body-center" >
     {% block content %}{% endblock %}
+    </div>
 
     <script type="text/javascript">
     $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
