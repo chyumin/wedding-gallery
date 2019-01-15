@@ -1,1 +1,5 @@
-setTimeout( function(){$('#flash').hide();}, 4500);
+setTimeout(
+    function(){
+        $('#flash').hide();
+    }, 4500
+);
