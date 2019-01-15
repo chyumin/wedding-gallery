@@ -11,7 +11,6 @@ $(function(){
                 $('div.number_of_likes#' + photo_id).text(data.number_of_likes + ' ♥');
             };
         });
-        console.log('blablablabl')
         return false;
     })
 })

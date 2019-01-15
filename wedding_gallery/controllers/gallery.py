@@ -47,6 +47,7 @@ def do_approve():
 @app.route('/do_like')
 def do_like():
     if current_user.is_anonymous:
+        flash('Must be logged in to Like Photos')
         return jsonify({'not_logged': True})
 
     photo_id = request.args.get("photo_id")

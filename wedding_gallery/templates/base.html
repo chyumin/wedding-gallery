@@ -48,12 +48,27 @@
 
     {% with messages = get_flashed_messages() %}
         {% for msg in messages %}
-        <div class="alert alert-info" role="alert">
+        <div id="flash" class="alert alert-info" role="alert">
             {{ msg }}
         </div>
         {% endfor -%}
     {% endwith %}
 
     {% block content %}{% endblock %}
+
+    <script type="text/javascript">
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script>
+    window.jQuery || document.write('<script src="{{ url_for('static', filename='jquery.js') }}">')
+    </script>
+
+    <script src="{{ url_for('static', filename='base.js') }}"></script>
+
+    {% block scripts %}{% endblock %}
+
 </body>
 </html>
