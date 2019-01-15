@@ -9,11 +9,18 @@ Image gallery for saving and sharing all your friends photos and memories!
 
 ## Development Setup:
 
-Clone the repository
-
+1. Clone this repository
+2. Create following environment variables:
 ```
 $ export FLASK_APP=/path/to/wedding-gallery/wedding_gallery/__init__.py
-$ export SQLALCHEMY_DATABASE_API=/path/to/project/wedding_gallery/__init__.py
+```
+3. Default db is SQLite stored in the project's home path, to set anotherone you need to provide the Database URI, example:
+
+```
+$ export SQLALCHEMY_DATABASE_URI=postgres://<db_user>:<password>@127.0.0.1:5432/db_name
+```
+4. Run migrations:
+```
 $ flask db migrate
 ```
 
