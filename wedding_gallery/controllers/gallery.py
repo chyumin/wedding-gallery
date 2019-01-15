@@ -47,4 +47,17 @@ def do_approve():
 @app.route('/do_like')
 @login_required
 def do_like():
+    photo_id = request.args.get("photo_id")
+    user_id = current_user.id
+    if not photo_id or not user_id:
+        flash('Failed to like')
+        redirect(url_for('index'))
+    like = DBSession.query(core.Like).\
+        filter_by(user_id=user_id, photo_id=photo_id).first()
+    if not like:
+        like = core.Like(user_id=user_id, photo_id=photo_id)
+        DBSession.add(like)
+    else:
+        DBSession.delete(like)
+    DBSession.commit()
     return redirect(url_for('index'))

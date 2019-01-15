@@ -20,9 +20,7 @@ Sort by:
         {%- if photo.number_of_likes %}
         ♥ {{ photo.number_of_likes }}
         {%- endif %}
-        <br>
-        <button type="button" onclick="window.location.href='{{ url_for('do_like') }}';">Like</button>
-        <br>
+        <button type="button" onclick="window.location.href='{{ url_for('do_like', photo_id=photo.id) }}';">Like</button>
         <br>
     </div>
     {%- else %}
