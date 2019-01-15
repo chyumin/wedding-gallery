@@ -1,21 +1,23 @@
 # Wedding Gallery
 
-Image gallery for saving and sharing all your friend's photos and memories!
+Image gallery for saving and sharing all your friends photos and memories!
 
-## Requiremetns:
+## Requirements:
 - Python 3.6+
 - OS: MacOS and Ubuntu (tested), should work on Windows environment
-- Database: SQLite (tested), should work on any other Database supported by SQLAlchemy
+- Database: SQLite (tested), should work on any other Database supported by [SQLAlchemy](https://www.sqlalchemy.org)
 
 ## Development Setup:
 
+Clone the repository
+
 ```
-$ export FLASK_APP=/path/to/project/wedding_gallery/__init__.py
+$ export FLASK_APP=/path/to/wedding-gallery/wedding_gallery/__init__.py
 $ export SQLALCHEMY_DATABASE_API=/path/to/project/wedding_gallery/__init__.py
 $ flask db migrate
 ```
 
-After project setup, there will be Three users and some photos inserted on database
+After project setup, there will be three users and some photos inserted on database
 
 The initial usernames are:
 - husband
@@ -86,6 +88,7 @@ It's possible to Create New Users and Delete Users
 ## To do
 - Edit User
 - Prevent from removing all users
-- Send files to a Cloud Storage
+- Save files to a Cloud Storage
 - Unnaprove Photos
 - Remove Photos
+- "My Uploaded Photos" Page
