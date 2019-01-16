@@ -20,18 +20,18 @@ depends_on = None
 def upgrade():
     first_user = core.GalleryUser.query.first()
     links = [
-        'https://static.independent.co.uk/s3fs-public/thumbnails/image/2017/09/09/10/average-wedding-cost.jpg',
-        'http://www.motelacqua.com.br/blog/wp-content/uploads/2015/09/Wedding-Photo-750x410.jpg',
-        'https://timedotcom.files.wordpress.com/2016/12/161212_em_weddingvenue_monarch.jpg',
         'https://sba.ubc.ca/sites/sba.ubc.ca/files/weddingplanningbouquetshoes_0.jpg',
-        'https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/08/23/17/break-dance-bri-208070.jpg',
+        'http://www.motelacqua.com.br/blog/wp-content/uploads/2015/09/Wedding-Photo-750x410.jpg',
+        'https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BBPSWzK.img?h=416&w=624&m=6&q=60&o=f&l=f',
+        'https://images.megapixl.com/6325/63256194.jpg',
+        'https://www.loromedia.com/wp-content/uploads/2013/10/happy-friends-on-beach.jpg'
     ]
     for link in links:
         photo = core.Photo(link=link, user_id=first_user.id)
         DBSession.add(photo)
 
     approved_photos = [
-        'http://www.dunkeldhousehotel.co.uk/wp-content/uploads/2018/01/IMG_0276.jpg',
+        'https://amp.thisisinsider.com/images/5b9eb0ef3cccd11d008b4576-750-500.jpg',
         'http://thelocalchurchintoronto.org/wp-content/uploads/2018/04/wedding-invite.jpg',
     ]
 
